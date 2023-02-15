@@ -2,6 +2,8 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from 'react-bootstrap/Alert';
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 function Add(props) {
   const [formValues, setFormValues] = useState({
@@ -9,6 +11,24 @@ function Add(props) {
     description: "",
     completed: false,
   });
+
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
 
   const [showAlert, setShowAlert] = useState(false);
 
@@ -37,6 +57,7 @@ function Add(props) {
       description: "",
       completed: false,
     });
+    toastr["success"]("TODO Added!", "Success");
     setShowAlert(true); // show the alert after form submission
   }
 
